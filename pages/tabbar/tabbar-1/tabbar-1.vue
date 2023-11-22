@@ -17,6 +17,39 @@
 					    <swiper-item v-for="(item, index) in items" :key="index">
 					      <image :src="item" class="slide-image"></image>
 					    </swiper-item>
+						<swiper-item>
+							<div style="background-color: red; width: 100%;height: 100%;align-items: center;display: flex; justify-content: center;">
+								<span style="color: yellow;text-align: center;">
+									国务院关于印发“十四五”就业促进规划的通知
+								</span>
+							</div>
+						</swiper-item>
+						<swiper-item>
+<!-- 							<canvas style="background-color:linear-gradient(to bottom,#FFff00,#ffffff) ;">
+								
+							</canvas> -->
+							<div style="background: linear-gradient(to bottom, yellow, white);
+							width: 100%;
+							height:100%;
+							align-items: center;
+							display: block; 
+							justify-content: center;
+							text-align: center;">
+								<text style="display: block;
+								position: relative;
+								top: 40px;
+								right: 30px;">
+									狮王养成记
+								</text>
+								<text style="display: block;
+								position: relative;
+								top: 50px;
+								left: 80px;">
+									——职场新人提升转型平台
+								</text>
+								
+							</div>
+						</swiper-item>
 					  </swiper>
 				</view>
 		<view class="module">
@@ -123,7 +156,7 @@ export default {
 	.uni-input-wrapper {
 		width: 325px;
 		border-radius: 50px;
-		border:5px solid blue;
+		border:1px solid blue;
 	    /* #ifndef APP-NVUE */
 	    display: flex;
 	    /* #endif */
@@ -193,7 +226,8 @@ export default {
 		background-repeat: no-repeat; */
 		
 		/* background-size: 100% 100%; */
-		background:linear-gradient(to bottom,#FFff00,#ffffff);
+		/* background:linear-gradient(to bottom,#FFff00,#ffffff); */
+		background-color: #FFFFFF;
 	}
 	.advertisement{
 		height: 100%;
