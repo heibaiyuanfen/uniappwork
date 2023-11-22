@@ -1,29 +1,18 @@
 
 <template>
 	<view class="uni-page-body">
-	    <view class="uni-input-wrapper">
-	        <input class="uni-input" confirm-type="search" placeholder="请输入搜索内容:" />
-			<view> <button class="mini-btn" type="default" size="mini">搜索</button></view>
-	    </view>
-		<view class="module">
-			
-		</view>
-		<view class="module">
-			
-		</view>
-		<view class="module"></view>
-		<view class="module">
-		</view>
-		<view class="module2">
-		</view>
-		<view class="module2">
-		</view>
-
-		<view class="module2">
-			<view class="flex-item4"><text class="text3"></text></view>
-			<view class="flex-item5" style="background-image: url('../../../static/logo5.png');background-size: 80% 100%;background-position: center;background-repeat: no-repeat;"><text class="text3"></text></view>
-		</view>
-
+  <view class="experience-bar-container">
+    <view class="experience-bar">
+      <view class="experience-bar-fill" 
+		:style="{ width: fillWidth + '%' }"></view>
+    </view>
+    <view class="experience-levels">
+      <!-- 循环生成经验级别 -->
+      <view v-for="level in 6" 
+	  key="level" 
+	  :class="experience-level">LV{{ level }}</view>
+    </view>
+  </view>
 	</view>
 </template>
 
@@ -31,11 +20,22 @@
 export default {
 	data() {
 		return {
-			title: 'Hello'
+			title: 'Hello',
+			      currentExperience: 20, // 当前经验值
+			      maxExperience: 100, // 升级所需的最大经验值
 		};
 	},
 	onLoad() {},
-	methods: {}
+	methods: {
+		setRating(index) {
+		      this.currentRating = index;
+		    }
+	},
+	  computed: {
+	    fillWidth() {
+	      return (this.currentExperience / this.maxExperience) * 100;
+	    }
+	  }
 };
 </script>
 
@@ -47,119 +47,35 @@ export default {
 	display: flex;
 	flex-direction: column;
 }
-	.module {
-	display: flex;
-	flex-direction: row;
-	height: 60px;
-	width: 100%;
-	
+.experience-bar-container {
+  display: flex;
+  flex-direction: column;
 }
-	.module2{
-			display: flex;
-			flex-direction: row;
-			height: 110px;
-			width: 100%;
-			text-align: center;
-	}
-	
-	.uni-input {
-	    height: 28px;
-	    line-height: 28px;
-	    font-size: 15px;
-	    padding-right: 0%;
-	    flex: 1;
-	    background-color: #FFFFFF;
-	}
-	.uni-input-wrapper {
-	    /* #ifndef APP-NVUE */
-	    display: flex;
-	    /* #endif */
-	    padding: 8px 13px;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    background-color: #FFFFFF;
-	}
-	.mini-btn {
-	    margin-right: 30rpx;
-	}
-	.flex-item {
-		width: 33.3%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
-	.flex-item2 {
-		width: 33.3%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		background-image: url('../../../static/img/tabbar/边框.png');
-		background-size: 100% 100%;
-	}
-	.flex-item3 {
-		width: 50%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-	}
-	.flex-item4 {
-		width: 60%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/img/tabbar/聊天.png'); */
-		background-size: 100% 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-	}
-	.flex-item5 {
-		width: 100%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
-	.flex-item5 {
-		width: 60%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
-	.uni-page-body{
-		display: flex;
-		flex-direction: column;
-		background-image: url('../../../static/邮箱4.png');
-		background-position: 50% 50%;
-		
-		background-repeat: no-repeat;
-		
-		 background-size: 100% 100%;
-	}
-	.advertisement{
-		height: 100%;
-		width: 100%;
-	}
-	.text1{
-		color: rgba(200,0,0,1);
-		font-size: 30px;
-	}
-	.log2{
-		height:100px ;
-		weight:25px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
-	.text2{
-		color:yellowgreen;
-		font-size: 25px;
-	}
-	.text3{
-		color:pink;
-		font-size: 50px;
-	}
-	.text4{
-		color:gold;
-		font-size: 40px;
-	}
+
+.experience-bar {
+  height: 20px;
+  background-color: #eee;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.experience-bar-fill {
+  background-color: #ffd700;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.experience-levels {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.experience-level {
+  /* 根据您的设计添加样式 */
+}
+
 </style>
