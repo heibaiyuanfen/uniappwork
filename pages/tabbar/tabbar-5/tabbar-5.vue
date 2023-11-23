@@ -1,6 +1,13 @@
 
 <template>
 	<view class="uni-page-body">
+		<!-- 头像 -->
+	<view class="headicon">
+		
+	</view>
+		
+		
+		
   <view class="experience-bar-container">
 	
 	
@@ -43,7 +50,16 @@ export default {
 	onLoad() {},
 	methods: {
 		calculateNodePosition(level){
-			return (this.containerWidth*(level))/(this.levels.length*this.containerWidth)*100;
+			if(level===0){
+				return 0;
+			};
+			if(level ===5){
+				return 100;
+			}
+			console.log((this.containerWidth*(level))/((this.levels.length-2)*this.containerWidth))
+			if(level!=0&&level!=5){
+				return ((level))/((this.levels.length-1))*100;
+			}
 		},
 	},
 	  computed: {
@@ -111,7 +127,7 @@ export default {
   bottom: 0px; /* 调整以适应经验条的高度 */
   width: 5px;
   height: 5px;
-  background-color: #ffff00; /* 节点的颜色 */
+  background-color: #000000; /* 节点的颜色 */
   border-radius: 50%; /* 圆形节点 */
   transform: translateX(-50%); /* 确保节点中心对准其位置 */
 }
