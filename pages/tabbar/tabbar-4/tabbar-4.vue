@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-page-body">
-		<tui-calendar lunar></tui-calendar>
+		<tui-calendar ref="calendar" lunar  :type="type" @change="change"></tui-calendar>
 	</view>
 </template>
 
@@ -14,10 +14,30 @@ export default {
 	},
 	data() {
 		return {
+			type:2,
+			result: '',
+			lunarResult:''
 		};
 	},
 	onLoad() {},
 	methods: {
+  	selectDate() {
+		
+  		this.$refs.calendar && this.$refs.calendar.show();
+  	},
+change(e) {
+  		console.log(e);
+  		if (this.type == 1) {
+  			this.result = e.result + ' ' + e.week;
+  			let date = `${e.lunar.lYear}-${e.lunar.lMonth}-${e.lunar.lDay}`;
+  			this.lunarResult = `${e.lunar.gzYear}年，${e.lunar.gzMonth}月，${e.lunar.gzDay}日 。生肖：${e.lunar.Animal}。日期：${e.lunar.IMonthCn + e.lunar.IDayCn}(${date})`;
+  		} else {
+  			this.result = `${e.startDate} 至 ${e.endDate}`;
+  			let sDate = `${e.startLunar.IMonthCn + e.startLunar.IDayCn}(${e.startLunar.lYear}-${e.startLunar.lMonth}-${e.startLunar.lDay})`;
+  			let eDate = `${e.endLunar.IMonthCn + e.endLunar.IDayCn}(${e.endLunar.lYear}-${e.endLunar.lMonth}-${e.endLunar.lDay})`;
+  			this.lunarResult = `${sDate} 至 ${eDate}`;
+  		}
+  	}			
 
 	},
 
