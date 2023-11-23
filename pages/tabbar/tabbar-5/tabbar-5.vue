@@ -2,13 +2,23 @@
 <template>
 	<view class="uni-page-body">
   <view class="experience-bar-container">
-    <view class="experience-bar">
+	
+   <view class="current-experience-icon" :style="{ left: fillWidth + '%' }">🌟</view>
+
+	<view class="experience-bar">
       <view class="experience-bar-fill" 
 		:style="{ width: fillWidth + '%' }"></view>
+		<view class="experience-level-node"
+		v-for="level in levels" 
+		key="level" 
+		:style="{ left: calculateNodePosition(level) + '%' }"></view>
+		
     </view>
+	
     <view class="experience-levels">
       <!-- 循环生成经验级别 -->
-      <view v-for="level in 6" 
+	  
+      <view v-for="level in levels" 
 	  key="level" 
 	  :class="experience-level">LV{{ level }}</view>
     </view>
@@ -18,24 +28,32 @@
 
 <script>
 export default {
+	
 	data() {
 		return {
 			title: 'Hello',
-			      currentExperience: 20, // 当前经验值
-			      maxExperience: 100, // 升级所需的最大经验值
+			      currentExperience: 60, // 当前经验值
+			      maxExperience: 60, // 升级所需的最大经验值
+				  levels: [0, 1, 2, 3, 4, 5],
+				  containerWidth: 400,
+				  
 		};
 	},
 	onLoad() {},
 	methods: {
-		setRating(index) {
-		      this.currentRating = index;
-		    }
+		calculateNodePosition(level){
+			return (this.containerWidth*(level))/(this.levels.length*this.containerWidth)*100;
+		},
 	},
 	  computed: {
 	    fillWidth() {
+			
 	      return (this.currentExperience / this.maxExperience) * 100;
-	    }
-	  }
+	    },
+
+	  },
+
+	  
 };
 </script>
 
@@ -48,12 +66,17 @@ export default {
 	flex-direction: column;
 }
 .experience-bar-container {
+	
+	
   display: flex;
   flex-direction: column;
+  position: relative;
+  top: 20px;
+  width: 200px;
 }
 
 .experience-bar {
-  height: 20px;
+  height: 5px;
   background-color: #eee;
   position: relative;
   border-radius: 10px;
@@ -77,5 +100,20 @@ export default {
 .experience-level {
   /* 根据您的设计添加样式 */
 }
-
+.current-experience-icon {
+  position: absolute;
+  top: -20px; /* 调整以适应你的设计 */
+  /* 根据需要调整图标样式 */
+  transform: translateX(-50%);
+}
+.experience-level-node {
+	
+  position: absolute;
+  bottom: 0px; /* 调整以适应经验条的高度 */
+  width: 5px;
+  height: 5px;
+  background-color: #333; /* 节点的颜色 */
+  border-radius: 50%; /* 圆形节点 */
+  transform: translateX(-50%); /* 确保节点中心对准其位置 */
+}
 </style>
