@@ -2,8 +2,13 @@
 <template>
 	<view class="uni-page-body">
 		<!-- 头像 -->
-	<view class="headicon">
-		
+	<view class="headicon"
+	style="border-radius: 50%;
+	border: 1px solid black;
+	height: 50px;
+	width: 50px;
+	position: absolute;">
+	<image></image>
 	</view>
 		
 		
@@ -113,7 +118,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 50px;
+  top: 60px;
   width: 90%;
   
 }
