@@ -9,28 +9,37 @@
 		
 		
   <view class="experience-bar-container">
-	
-	
-   <view class="current-experience-icon" :style="{ left: fillWidth + '%' }">🌟</view>
-
-	<view class="experience-bar">
-      <view class="experience-bar-fill" 
-		:style="{ width: fillWidth + '%' }"></view>
-		<view class="experience-level-node"
-		v-for="level in levels" 
-		key="level" 
-		:style="{ left: calculateNodePosition(level) + '%' }"></view>
+	<view class="myvip" 
+	style="border-radius: 5px; 
+	border: 1px solid black;
+	background-color: beige; 
+	position: absolute;
+	height: 80px;
+	width: 100%;
+	">
+		<view class="current-experience-icon" :style="{ left: fillWidth + '%' }">🌟</view>
 		
-    </view>
+			<view class="experience-bar">
+		    <view class="experience-bar-fill" 
+				:style="{ width: fillWidth + '%' }"></view>
+				<view class="experience-level-node"
+				v-for="level in levels" 
+				key="level" 
+				:style="{ left: calculateNodePosition(level) + '%' }"></view>
+				
+		  </view>
+			
+		  <view class="experience-levels">
+		    <!-- 循环生成经验级别 -->
+			  
+		    <view v-for="level in levels" 
+			  key="level" 
+			  :class="experience-level">LV{{ level }}</view>
+		  </view>
+		</view>
+	</view>
 	
-    <view class="experience-levels">
-      <!-- 循环生成经验级别 -->
-	  
-      <view v-for="level in levels" 
-	  key="level" 
-	  :class="experience-level">LV{{ level }}</view>
-    </view>
-  </view>
+  
 	</view>
 </template>
 
@@ -43,7 +52,7 @@ export default {
 			      currentExperience: 60, // 当前经验值
 			      maxExperience: 60, // 升级所需的最大经验值
 				  levels: [0, 1, 2, 3, 4, 5],
-				  containerWidth: 400,
+				  
 				  
 		};
 	},
@@ -56,7 +65,6 @@ export default {
 			if(level ===5){
 				return 100;
 			}
-			console.log((this.containerWidth*(level))/((this.levels.length-2)*this.containerWidth))
 			if(level!=0&&level!=5){
 				return ((level))/((this.levels.length-1))*100;
 			}
@@ -86,8 +94,9 @@ export default {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 20px;
-  width: 200px;
+  top: 50px;
+  width: 90%;
+  
 }
 
 .experience-bar {
@@ -96,6 +105,7 @@ export default {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+  top: 40px;
 }
 
 .experience-bar-fill {
@@ -103,13 +113,15 @@ export default {
   height: 100%;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 5;
 }
 
 .experience-levels {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
+  position: relative;
+  top: 40px;
 }
 
 .experience-level {
@@ -117,7 +129,7 @@ export default {
 }
 .current-experience-icon {
   position: absolute;
-  top: -20px; /* 调整以适应你的设计 */
+  top: 20px; /* 调整以适应你的设计 */
   /* 根据需要调整图标样式 */
   transform: translateX(-50%);
 }
