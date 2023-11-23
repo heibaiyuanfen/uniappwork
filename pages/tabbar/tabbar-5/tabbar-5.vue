@@ -9,14 +9,33 @@
 		
 		
   <view class="experience-bar-container">
-	<view class="myvip" 
+	<view class="mybox" 
 	style="border-radius: 5px; 
 	border: 1px solid black;
 	background-color: beige; 
 	position: absolute;
-	height: 80px;
+	height: 100px;
 	width: 100%;
 	">
+		<view class="mytext"
+		style="position: absolute;
+		height: 30px;
+		width: 100px;"
+		>
+			<text>狮王</text>
+		</view>
+		<view class="myvip"
+		style="border-radius: 5px;
+		background-color: orange;
+		position: absolute;
+		height: 30px;
+		width: 100px;
+		top: 2px;
+		left: 70%;
+		"
+		>
+			
+		</view>
 		<view class="current-experience-icon" :style="{ left: fillWidth + '%' }">🌟</view>
 		
 			<view class="experience-bar">
@@ -105,7 +124,7 @@ export default {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  top: 40px;
+  top: 60px;
 }
 
 .experience-bar-fill {
@@ -121,7 +140,7 @@ export default {
   justify-content: space-between;
   padding: 5px 0;
   position: relative;
-  top: 40px;
+  top: 60px;
 }
 
 .experience-level {
@@ -129,7 +148,7 @@ export default {
 }
 .current-experience-icon {
   position: absolute;
-  top: 20px; /* 调整以适应你的设计 */
+  top: 40px; /* 调整以适应你的设计 */
   /* 根据需要调整图标样式 */
   transform: translateX(-50%);
 }
