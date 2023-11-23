@@ -4,42 +4,84 @@
 如果您要在uni-app中实现的是一个经验条，而不是评分组件，那么UI的实现会有所不同。经验条通常是一个进度条，显示用户的当前经验和升级所需的经验。这里是一个简化的例子，展示了如何实现一个基本的经验条。
 
 ```html
+
 <template>
+	<view class="uni-page-body">
   <view class="experience-bar-container">
-    <view class="experience-bar">
-      <view class="experience-bar-fill" :style="{ width: fillWidth + '%' }"></view>
+	
+	
+   <view class="current-experience-icon" :style="{ left: fillWidth + '%' }">🌟</view>
+
+	<view class="experience-bar">
+      <view class="experience-bar-fill" 
+		:style="{ width: fillWidth + '%' }"></view>
+		<view class="experience-level-node"
+		v-for="level in levels" 
+		key="level" 
+		:style="{ left: calculateNodePosition(level) + '%' }"></view>
+		
     </view>
+	
     <view class="experience-levels">
       <!-- 循环生成经验级别 -->
-      <view v-for="level in 6" :key="level" class="experience-level">LV{{ level }}</view>
+	  
+      <view v-for="level in levels" 
+	  key="level" 
+	  :class="experience-level">LV{{ level }}</view>
     </view>
   </view>
+	</view>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      currentExperience: 0, // 当前经验值
-      maxExperience: 100, // 升级所需的最大经验值
-    };
-  },
-  computed: {
-    fillWidth() {
-      return (this.currentExperience / this.maxExperience) * 100;
-    }
-  }
+	
+	data() {
+		return {
+			title: 'Hello',
+			      currentExperience: 60, // 当前经验值
+			      maxExperience: 60, // 升级所需的最大经验值
+				  levels: [0, 1, 2, 3, 4, 5],
+				  containerWidth: 400,
+				  
+		};
+	},
+	onLoad() {},
+	methods: {
+		calculateNodePosition(level){
+			return (this.containerWidth*(level))/(this.levels.length*this.containerWidth)*100;
+		},
+	},
+	  computed: {
+	    fillWidth() {
+			
+	      return (this.currentExperience / this.maxExperience) * 100;
+	    },
+
+	  },
+
+	  
 };
 </script>
 
 <style>
+.content {
+	text-align: center;
+	height: 400upx;
+	margin-top: 200upx;
+	display: flex;
+	flex-direction: column;
+}
 .experience-bar-container {
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 20px;
+  width: 200px;
 }
 
 .experience-bar {
-  height: 20px;
+  height: 5px;
   background-color: #eee;
   position: relative;
   border-radius: 10px;
@@ -63,7 +105,24 @@ export default {
 .experience-level {
   /* 根据您的设计添加样式 */
 }
+.current-experience-icon {
+  position: absolute;
+  top: -20px; /* 调整以适应你的设计 */
+  /* 根据需要调整图标样式 */
+  transform: translateX(-50%);
+}
+.experience-level-node {
+	
+  position: absolute;
+  bottom: 0px; /* 调整以适应经验条的高度 */
+  width: 5px;
+  height: 5px;
+  background-color: #ffff00; /* 节点的颜色 */
+  border-radius: 50%; /* 圆形节点 */
+  transform: translateX(-50%); /* 确保节点中心对准其位置 */
+}
 </style>
+
 ```
 
 在这个例子中：
@@ -74,7 +133,7 @@ export default {
 - `<experience-levels>` 显示了不同的经验级别，您可以根据设计调整其样式。
 
 您可以根据这个基础示例，调整样式和逻辑以满足您的具体需求。如果您有任何其他要求或需要帮助，请告诉我！
-
+-2023/11/23 更新了经验条中带有等级节点的显示。
 
 # Uni-app 经验条组件
 

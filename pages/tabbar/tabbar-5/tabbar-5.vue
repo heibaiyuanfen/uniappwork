@@ -3,6 +3,7 @@
 	<view class="uni-page-body">
   <view class="experience-bar-container">
 	
+	
    <view class="current-experience-icon" :style="{ left: fillWidth + '%' }">🌟</view>
 
 	<view class="experience-bar">
@@ -66,11 +67,9 @@ export default {
 	flex-direction: column;
 }
 .experience-bar-container {
-	
-	
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
   top: 20px;
   width: 200px;
 }
@@ -112,7 +111,7 @@ export default {
   bottom: 0px; /* 调整以适应经验条的高度 */
   width: 5px;
   height: 5px;
-  background-color: #333; /* 节点的颜色 */
+  background-color: #ffff00; /* 节点的颜色 */
   border-radius: 50%; /* 圆形节点 */
   transform: translateX(-50%); /* 确保节点中心对准其位置 */
 }
