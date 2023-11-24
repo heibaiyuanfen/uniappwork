@@ -63,7 +63,16 @@
 		</view>
 	</view>
 	
-  
+<view style="position: absolute;
+top: 500px;
+display: flex;
+">
+ <scroll-view class="scroll-view" scroll-x="true" style="height: 300px;display: flex;">  
+      <view v-for="(item, index) in list" :key="index" class="scroll-item">  
+        <image :src="item"></image>
+      </view>  
+    </scroll-view>  
+</view>
 	</view>
 </template>
 
@@ -76,7 +85,9 @@ export default {
 			      currentExperience: 60, // 当前经验值
 			      maxExperience: 60, // 升级所需的最大经验值
 				  levels: [0, 1, 2, 3, 4, 5],
-				  
+				  list:["../../../static/logo1.png",
+				  "../../../static/logo1.png",
+				  "../../../static/logo1.png"]
 				  
 		};
 	},
@@ -167,4 +178,12 @@ export default {
   border-radius: 50%; /* 圆形节点 */
   transform: translateX(-50%); /* 确保节点中心对准其位置 */
 }
+.scroll-view {  
+  overflow-x: auto;  
+}  
+/* .scroll-item {  
+  height: 50px;  
+  line-height: 50px;  
+  text-align: center;  
+}  */
 </style>
