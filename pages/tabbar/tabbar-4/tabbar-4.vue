@@ -1,6 +1,10 @@
 <template>
 	<view class="uni-page-body">
-		<tui-calendar ref="calendar" lunar  :type="type" @change="change"></tui-calendar>
+		<view class="calendar-box"
+		style="width: 70%;
+		height: 50px;">
+			<tui-calendar ref="calendar" lunar  :type="type" @change="change"></tui-calendar>
+		</view>
 	</view>
 </template>
 

@@ -22,10 +22,18 @@ export default {
 };
 </script>
 
-<style>
+
+
+<style lang="scss">
+
+@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/index.scss';
+	
 uni-page-body {
 		background-color: #F5F5F5 !important;
 		min-height: 100% !important;
 		height: auto !important;
 	}
+
 </style>
+
+
