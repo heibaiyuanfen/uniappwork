@@ -26,7 +26,7 @@ export default {
 
 <style lang="scss">
 
-@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/index.scss';
+@import '@/uni_modules/tuniaoui-vue3/index.css';
 	
 uni-page-body {
 		background-color: #F5F5F5 !important;

@@ -1,9 +1,8 @@
 {
-"easycom": {
-    "autoscan": true,
+  "easycom": {
     "custom": {
-      "^nut-(.*)?-(.*)": "nutui-uniapp/components/$1$2/$1$2.vue",
-      "^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
+      "^tn-(.*)-(item|group)$": "@/uni_modules/tuniaoui-vue3/components/$1/src/$1-$2.vue",
+      "^tn-(.*)": "@/uni_modules/tuniaoui-vue3/components/$1/src/$1.vue"
     }
   },
 	
