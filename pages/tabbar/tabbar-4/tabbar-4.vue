@@ -5,28 +5,52 @@
 		
 		<view class="calendar-box"
 		style="width: 60%;
-		height: 40px;
+		height: 50px;
 		position: absolute;
 		top: 250px;">
 		<tn-calendar  v-model="selectDate" mode="date"></tn-calendar>	
 		</view>
 		<!-- <TnCalendar v-model="selectDate" mode="date" /> -->
 
-		<view style="position: absolute;
-		top: 250px;
-		background-color: white;
-		width: 40%;
-		left: 60%;
-		">
-			<tn-collapse>
-			  <tn-collapse-item v-for="(item, index) in list1" :key="index" :title="item.title" :disabled="item.disabled">
-			    <view class="collapse-item-content">
-			      {{ item.content }}
-			    </view>
-			  </tn-collapse-item>
-			</tn-collapse>
+
+		
+		
+		<scroll-view class="scroll-page" scroll-y="true" style="position: absolute; width: 40%; top: 250px;left: 60%;">
+			<view class="page">
+			<view class="head">
+			  <!-- 头部标题和未完成任务数量 -->
+			  <text class="title">今天的任务（未完成 {{ uncompletedTasks.length }}）</text>
+			  <!-- 更多操作图标，使用字体图标或图片 -->
+			  <text class="icon">···</text>
+			</view>
+<view class="list-container">
+      <view v-for="(item, index) in uncompletedTasks" :key="`uncompleted-${index}`" class="list-item">
+        <!-- 当点击复选框时，触发toggleTaskCompletion方法 -->
+        <!-- <checkbox class="checkbox" :value="item.completed" @change="toggleTaskCompletion(item)"></checkbox> -->
+        <text class="item-title">{{ item.title }}</text>
+        <text class="item-subtitle">{{ item.subtitle }}</text>
+      </view>
+    </view>
+
+    <!-- 已完成任务列表 -->
+    <!-- 使用v-if来动态显示已完成任务列表 -->
+    <view v-if="completedTasks.length > 0" class="completed-tasks-container">
+	<text class="title">今天的任务（完成 {{ completedTasks.length }}）</text>
+      <view v-for="(item, index) in completedTasks" :key="`completed-${index}`" class="completed-task">
+        <text class="completed-item-title">{{ item.title }}</text>
+      </view>
+    </view>
+	   <!-- 提交按钮 -->
+<!-- 	    <view class="submit-button-container">
+	      <button @click="submitTasks">提交</button>
+	    </view> -->
 			
-		</view>
+			<view class="footer">
+			  <!-- 底部固定区域 -->
+			  <!-- 底部内容省略，与前面示例相同 -->
+			</view>
+				</view>
+		</scroll-view>
 	</view>
 </template>
 
@@ -56,12 +80,37 @@ export default {
 			            disabled: false
 			          }
 			        ],
+      tasks: [
+        { title: '今天能量早餐', subtitle: '今天加油', completed: false },
+        { title: '今天深呼吸', subtitle: '今天放松', completed: false },
+        { title: '今天要记得微笑', subtitle: '保持微笑', completed: true },
+      ],
 
 		};
 	},
 	onLoad() {},
 	methods: {
+		    // 切换任务的完成状态
+		    toggleTaskCompletion(task) {
+				this.tasks.completed = !this.tasks.completed
+				
+		      // task.completed = !task.completed;
+		      // 由于我们修改了任务的属性，Vue将自动重新计算uncompletedTasks和completedTasks
+		    },
+			submit(){
+				this.$forceUpdate();
+			}
 	},
+	computed:{
+		    // 计算未完成的任务列表
+		    uncompletedTasks() {
+		      return this.tasks.filter(task => !task.completed);
+		    },
+		    // 计算已完成的任务列表
+		    completedTasks() {
+		      return this.tasks.filter(task => task.completed);
+		    }
+	}
 
 };
 </script>
@@ -71,4 +120,92 @@ export default {
   .collapse-item-content {
     word-wrap: break-word;
   }
+  .page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .scroll-page{
+	  height: 200px;
+  }
+  
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .icon {
+    font-size: 24px;
+  }
+  
+  .list-container {
+    flex: 1;
+    padding: 10px;
+    background-color: #f5f5f5;
+  }
+  
+  .list-item {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .item-title {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .item-subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #fff;
+  }
+  
+  .footer-item {
+    display: flex;
+    align-items: center;
+  }
+  .emoji {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #333;
+}
+
+.completed-tasks-container {
+  padding: 10px;
+}
+
+.completed-task {
+  background-color: #e0e0e0; /* 已完成任务的背景色 */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.completed-item-title {
+  text-decoration: line-through; /* 完成任务的删除线 */
+  color: #999; /* 已完成任务的文本颜色 */
+}
+
+.checkbox {
+  margin-right: 10px;
+}
 </style>

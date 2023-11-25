@@ -2,14 +2,10 @@
 <template>
 	<view class="uni-page-body">
 		<!-- 头像 -->
-	<view class="headicon"
-	style="border-radius: 50%;
-	border: 1px solid black;
-	height: 50px;
-	width: 50px;
-	position: absolute;">
-	<image></image>
-	</view>
+  <div class="avatar" @click="openImagePicker">
+    <img :src="imageUrl" class="avatar-image" />
+    <uni-icons type="camera" size="32" class="camera-icon" />
+  </div>
 		
 		
 		
@@ -103,6 +99,7 @@ export default {
 				        ],
 				        selectedItemId: null,
 				        // 添加其他属性以跟踪滑动和选择
+						 imageUrl: '../../../static/logo1.png', // 替换为你的默认头像路径
 				  
 		};
 	},
@@ -130,7 +127,31 @@ export default {
 			  handletouchmovent(event){
 				        const deltaX = event.changedTouches[0].clientX - this.startX;
 				        this.$refs.listContainer.scrollLeft += deltaX;
-			  }
+			  },
+			  openFilePicker() {
+			        this.$refs.fileInput.click(); // 打开文件选择器
+			      },
+			      handleFileChange(event) {
+			        const file = event.target.files[0];
+			        if (file) {
+			          // 执行上传文件的逻辑
+			          // 可以使用uni.uploadFile或其他上传方法将文件上传到服务器
+			          // 上传成功后更新this.imageUrl为新头像的URL
+			          // 例如：this.imageUrl = '新头像的URL';
+			        }
+			      },
+				    openImagePicker() {
+				      uni.chooseImage({
+				        count: 1, // 最多选择一张图片
+				        success: (res) => {
+				          const tempFilePath = res.tempFilePaths[0];
+				          // 执行上传文件的逻辑
+				          // 可以使用uni.uploadFile或其他上传方法将文件上传到服务器
+				          // 上传成功后更新this.imageUrl为新头像的URL
+				          // 例如：this.imageUrl = '新头像的URL';
+				        },
+				      });
+				    },
 	},
 	  computed: {
 	    fillWidth() {
@@ -240,5 +261,32 @@ export default {
 
 .selected {
   /* 选中项目的样式 */
+}
+
+.avatar {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
 }
 </style>
