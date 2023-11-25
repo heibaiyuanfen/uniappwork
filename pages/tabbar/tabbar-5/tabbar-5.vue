@@ -63,16 +63,23 @@
 		</view>
 	</view>
 	
-<view style="position: absolute;
-top: 500px;
-display: flex;
-">
- <scroll-view class="scroll-view" scroll-x="true" style="height: 300px;display: flex;">  
-      <view v-for="(item, index) in list" :key="index" class="scroll-item">  
-        <image :src="item"></image>
-      </view>  
-    </scroll-view>  
-</view>
+<div class="horizontal-scroll-list" @touchmove="handletouchmovent" 
+style="position: absolute;
+top: 400px;"
+>
+    <div class="list-container" ref="listContainer">
+      <!-- 使用 v-for 渲染左右滑动列表项 -->
+      <div
+        class="list-item"
+        v-for="item in itemList"
+        :key="item.id"
+        :class="{ selected: item.id === selectedItemId }"
+        @click="selectItem(item)"
+      >
+        <image :src="item.text" ></image>
+      </div>
+    </div>
+  </div>
 	</view>
 </template>
 
@@ -87,7 +94,15 @@ export default {
 				  levels: [0, 1, 2, 3, 4, 5],
 				  list:["../../../static/logo1.png",
 				  "../../../static/logo1.png",
-				  "../../../static/logo1.png"]
+				  "../../../static/logo1.png"],
+				        itemList: [
+				          { id: 1, text: '../../../static/logo1.png' },
+				          { id: 2, text: '../../../static/logo1.png' },
+				          { id: 3, text: '../../../static/logo1.png' },
+				          // 添加更多项目
+				        ],
+				        selectedItemId: null,
+				        // 添加其他属性以跟踪滑动和选择
 				  
 		};
 	},
@@ -104,6 +119,18 @@ export default {
 				return ((level))/((this.levels.length-1))*100;
 			}
 		},
+		    selectItem(item) {
+		      this.selectedItemId = item.id;
+		      // 处理项目选择逻辑
+		    },
+			  handleSwipe(event) {
+			    const delta = event.deltaX; // 获取水平方向的滑动距离
+			    this.$refs.listContainer.scrollLeft += delta; // 更新滚动位置
+			  },
+			  handletouchmovent(event){
+				        const deltaX = event.changedTouches[0].clientX - this.startX;
+				        this.$refs.listContainer.scrollLeft += deltaX;
+			  }
 	},
 	  computed: {
 	    fillWidth() {
@@ -179,11 +206,39 @@ export default {
   transform: translateX(-50%); /* 确保节点中心对准其位置 */
 }
 .scroll-view {  
-  overflow-x: auto;  
+  overflow: auto;  
 }  
 /* .scroll-item {  
   height: 50px;  
   line-height: 50px;  
   text-align: center;  
 }  */
+
+
+
+/* 添加左右滑动列表的样式 */
+.horizontal-scroll-list {
+  /* 设置组件的宽度和高度以适应你的需求 */
+  width: 100%;
+  height: 200px; /* 例如，设置高度为200px */
+
+  /* 设置溢出以启用水平滚动 */
+  overflow-x: auto;
+  white-space: nowrap; /* 防止文本折行 */
+}
+
+.list-container {
+  display: inline-block; /* 创建一个内联块容器以容纳列表项 */
+  /* 添加其他样式以控制列表项的外观和间距 */
+}
+
+.list-item {
+  display: inline-block; /* 让列表项在水平方向上排列 */
+  /* 添加列表项的样式，如背景色、边框等 */
+  margin-right: 10px; /* 可以根据需要调整间距 */
+}
+
+.selected {
+  /* 选中项目的样式 */
+}
 </style>
