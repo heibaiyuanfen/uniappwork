@@ -19,7 +19,7 @@
 			<view class="page">
 			<view class="head">
 			  <!-- 头部标题和未完成任务数量 -->
-			  <text class="title">今天的任务（未完成 {{ uncompletedTasks.length }}）</text>
+			  <text class="title">今天你有{{ uncompletedTasks.length }}个待办</text>
 			  <!-- 更多操作图标，使用字体图标或图片 -->
 			  <text class="icon">···</text>
 			</view>
@@ -29,6 +29,10 @@
         <!-- <checkbox class="checkbox" :value="item.completed" @change="toggleTaskCompletion(item)"></checkbox> -->
         <text class="item-title">{{ item.title }}</text>
         <text class="item-subtitle">{{ item.subtitle }}</text>
+		<!-- 显示任务创建的时间 -->
+		<!-- <text class="item-time">创建时间: {{ new Date(item.createdTime).toLocaleString() }}</text>
+		 -->
+		 <text class="item-time">创建时间: {{ formatTime(item.createdTime) }}</text>
       </view>
     </view>
 
@@ -38,6 +42,7 @@
 	<text class="title">今天的任务（完成 {{ completedTasks.length }}）</text>
       <view v-for="(item, index) in completedTasks" :key="`completed-${index}`" class="completed-task">
         <text class="completed-item-title">{{ item.title }}</text>
+		<text class="item-time">创建时间: {{ formatTime(item.createdTime) }}</text>
       </view>
     </view>
 	   <!-- 提交按钮 -->
@@ -45,10 +50,7 @@
 	      <button @click="submitTasks">提交</button>
 	    </view> -->
 			
-			<view class="footer">
-			  <!-- 底部固定区域 -->
-			  <!-- 底部内容省略，与前面示例相同 -->
-			</view>
+
 				</view>
 		</scroll-view>
 	</view>
@@ -81,9 +83,9 @@ export default {
 			          }
 			        ],
       tasks: [
-        { title: '今天能量早餐', subtitle: '今天加油', completed: false },
-        { title: '今天深呼吸', subtitle: '今天放松', completed: false },
-        { title: '今天要记得微笑', subtitle: '保持微笑', completed: true },
+        { title: '今天能量早餐', subtitle: '今天加油', completed: false ,createdTime: Date.now()},
+        { title: '今天深呼吸', subtitle: '今天放松', completed: false ,createdTime: Date.now()},
+        { title: '今天要记得微笑', subtitle: '保持微笑', completed: true,createdTime: Date.now() },
       ],
 
 		};
@@ -99,7 +101,18 @@ export default {
 		    },
 			submit(){
 				this.$forceUpdate();
-			}
+			},
+			formatTime(time) {
+			    const date = new Date(time);
+			    let hours = date.getHours();
+			    let minutes = date.getMinutes();
+			
+			    // 将小时和分钟转换为两位数形式，例如：'07:05'
+			    hours = hours < 10 ? '0' + hours : hours;
+			    minutes = minutes < 10 ? '0' + minutes : minutes;
+			
+			    return `${hours}:${minutes}`;
+			  }
 	},
 	computed:{
 		    // 计算未完成的任务列表
@@ -110,7 +123,14 @@ export default {
 		    completedTasks() {
 		      return this.tasks.filter(task => task.completed);
 		    }
-	}
+	},
+	filters: {
+	    // 添加一个过滤器来格式化时间
+	    // formatDate(value) {
+	    //   const date = new Date(value);
+	    //   return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+	    // }
+	  }
 
 };
 </script>
@@ -207,5 +227,10 @@ export default {
 
 .checkbox {
   margin-right: 10px;
+}
+.item-time {
+  color: #888;
+  font-size: 12px;
+  margin-top: 5px;
 }
 </style>
