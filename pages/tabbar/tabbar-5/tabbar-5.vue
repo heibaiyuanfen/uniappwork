@@ -1,6 +1,41 @@
 
 <template>
 	<view class="uni-page-body">
+		<!-- 顶部导航栏 -->
+		
+		  <view class="footer-nav">
+		    <!-- 底部导航容器 -->
+		    <view class="nav-item" @click="onNavItemClick('home')">
+		      <!-- 首页图标 -->
+			  <image src="../../../static/img/qa.png" style="height: 20px;width: 20px;
+			  position: absolute;
+			  left: 80%;
+			  top:0px;
+			  "></image>
+		      <text class="iconfont icon-home"></text>
+		    </view>
+		    <view class="nav-item" @click="onNavItemClick('search')">
+		      <!-- 搜索图标 -->
+			  <image src="../../../static/img/qa.png" style="height: 20px;width: 20px;
+			  position: absolute;
+			  left: 87%;
+			  top:0px;
+			  "></image>
+		      <text class="iconfont icon-search"></text>
+		    </view>
+		    <view class="nav-item" @click="onNavItemClick('settings')">
+		      <!-- 设置图标 -->
+			  <image src="../../../static/img/qa.png" style="height: 20px;width: 20px;
+			  position: absolute;
+			  left: 94%;
+			  top:0px;
+			  "></image>
+		      <text class="iconfont icon-settings"></text>
+		    </view>
+		  </view>
+		
+		
+		
 		<!-- 头像 -->
   <div class="avatar" @click="openImagePicker">
     <img :src="imageUrl" class="avatar-image" />
@@ -152,6 +187,10 @@ export default {
 				        },
 				      });
 				    },
+					    onNavItemClick(page) {
+					      // 处理导航项点击事件，可以根据page值进行页面跳转或其他逻辑
+					      console.log('Navigation item clicked:', page);
+					    },
 	},
 	  computed: {
 	    fillWidth() {
@@ -288,5 +327,23 @@ export default {
   background-color: #fff;
   border-radius: 50%;
   padding: 5px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-around; /* 项目间隔均匀分布 */
+  padding: 10px 0;
+  background-color: #FFFFFF; /* 背景颜色 */
+  border-top: 1px solid #CCCCCC; /* 顶部边框 */
+}
+
+.nav-item {
+  flex: 1; /* 确保每个导航项都有相同的空间 */
+  text-align: center; /* 图标居中 */
+}
+
+.iconfont {
+  font-family: 'iconfont'; /* 指定字体图标的字体族名 */
+  font-size: 20px; /* 图标大小 */
 }
 </style>
