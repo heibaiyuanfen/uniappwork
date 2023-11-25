@@ -243,3 +243,71 @@ export default {
 请注意，您可能需要根据您的项目结构调整`ExperienceBar`组件的导入路径。在页面的`<script>`部分，注册`ExperienceBar`组件，并在`data`函数中定义经验条的数据。
 
 使用这种方法，您可以在您的uni-app项目中任何需要显示经验条的地方重用这个组件。
+
+
+
+
+当你想要在点击头像后触发图片上传，而不使用<input>元素，可以使用UniApp的uni.chooseImage方法来实现图片选择和上传功能。以下是一个更新后的头像UI组件示例：
+
+```vue
+<template>
+  <div class="avatar" @click="openImagePicker">
+    <img :src="imageUrl" class="avatar-image" />
+    <uni-icons type="camera" size="32" class="camera-icon" />
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      imageUrl: '默认头像路径', // 替换为你的默认头像路径
+    };
+  },
+  methods: {
+    openImagePicker() {
+      uni.chooseImage({
+        count: 1, // 最多选择一张图片
+        success: (res) => {
+          const tempFilePath = res.tempFilePaths[0];
+          // 执行上传文件的逻辑
+          // 可以使用uni.uploadFile或其他上传方法将文件上传到服务器
+          // 上传成功后更新this.imageUrl为新头像的URL
+          // 例如：this.imageUrl = '新头像的URL';
+        },
+      });
+    },
+  },
+};
+</script>
+
+<style>
+.avatar {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
+</style>
+
+```
+
+在这个示例中，我们移除了<input>元素，而是在头像的点击事件上绑定了openImagePicker方法。当用户点击头像时，会触发openImagePicker方法，其中我们使用uni.chooseImage方法来选择图片。选择成功后，可以执行上传图片的逻辑，上传成功后更新this.imageUrl为新头像的URL。
+
