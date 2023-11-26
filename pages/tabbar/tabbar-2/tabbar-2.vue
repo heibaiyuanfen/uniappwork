@@ -1,28 +1,33 @@
 <!-- style="background-image: url('../../../static/img/tabbar/积分.png');" -->
 <template>
 	<view class="uni-page-body">
-	    <view class="uni-input-wrapper">
-	        <input class="uni-input" confirm-type="search" placeholder="请输入搜索内容:" />
-			<view> <button class="mini-btn" type="default" size="mini">搜索</button></view>
-	    </view>
-		<view class="module">
-			
-		</view>
-		<view class="module">
-			
-		</view>
-		<view class="module"></view>
-		<view class="module">
-		</view>
-		<view class="module2">
-		</view>
-		<view class="module2">
-		</view>
-		<view class="module2">
-			<view class="flex-item4"><text class="text3"></text></view>
-			<view class="flex-item5" style="background-image: url('../../../static/logo5.png');background-size: 80% 100%;background-position: center;background-repeat: no-repeat;"><text class="text3"></text></view>
-		</view>
-
+		  <view class="table">
+		    <view class="row" v-for="(item, index) in tableData" :key="index">
+		      <view class="cell" v-for="(cell, index) in item" :key="index">
+		        <text class="vip-tag">VIP</text>
+		        <text>{{ cell }}</text>
+		      </view>
+		    </view>
+		  </view>
+		    <view class="container">
+		      <!-- 总体布局容器 -->
+		      <view class="menu-item" v-for="(item, index) in menuItems" :key="index">
+		        <!-- 单个菜单项 -->
+		        <image :src="item.icon" class="icon"></image> <!-- 菜单图标 -->
+		        <text>{{ item.text }}</text> <!-- 菜单文本 -->
+		      </view>
+		    </view>
+		  <view>
+		    <!-- 第一个通知栏 -->
+		    <view class="notification-bar">
+		      <text class="notification-text">会员升级狂欢活动，每月仅需9.99元起！</text>
+		    </view>
+		    
+		    <!-- 第二个通知栏 -->
+		    <view class="notification-bar">
+		      <text class="notification-text">今日新鲜直播：水煮三文鱼，人气主播现场教学</text>
+		    </view>
+		  </view>
 	</view>
 </template>
 
@@ -30,7 +35,18 @@
 export default {
 	data() {
 		return {
-			title: 'Hello'
+			title: 'Hello',
+			      tableData: [
+			        ['会员升级', '兑换奖品'],
+			        ['积分商城', '每日抽奖'],
+			        // 其他行...
+			      ],
+			      // 菜单项数据，包含图标和文本
+			      menuItems: [
+			        { icon: './../../static/邮箱.png', text: '会员升级' },
+			        { icon: './../../static/logo5.png', text: '兑换奖品' },
+			        // 添加更多菜单项...
+			      ],
 		};
 	},
 	onLoad() {},
@@ -39,126 +55,76 @@ export default {
 </script>
 
 <style>
-.content {
-	text-align: center;
-	height: 400upx;
-	margin-top: 200upx;
-	display: flex;
-	flex-direction: column;
-}
-	.module {
-	display: flex;
-	flex-direction: row;
-	height: 60px;
-	width: 100%;
-	
-}
-	.module2{
-			display: flex;
-			flex-direction: row;
-			height: 110px;
-			width: 100%;
-			text-align: center;
-	}
-	
-	.uni-input {
-	    height: 28px;
-	    line-height: 28px;
-	    font-size: 15px;
-	    padding-right: 0%;
-	    flex: 1;
-	    background-color: #FFFFFF;
-	}
-	.uni-input-wrapper {
-	    /* #ifndef APP-NVUE */
-	    display: flex;
-	    /* #endif */
-	    padding: 8px 13px;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    background-color: #FFFFFF;
-	}
-	.mini-btn {
-	    margin-right: 30rpx;
-	}
-	.flex-item {
-		width: 33.3%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
-	.flex-item2 {
-		width: 33.3%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		background-image: url('../../../static/img/tabbar/边框.png');
-		background-size: 100% 100%;
-	}
-	.flex-item3 {
-		width: 50%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-	}
-	.flex-item4 {
-		width: 60%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/img/tabbar/聊天.png'); */
-		background-size: 100% 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-	}
-	.flex-item5 {
-		width: 100%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
-	.flex-item5 {
-		width: 60%;
-		height: 100%;
-		text-align: center;
-		line-height: 60px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
+
 	.uni-page-body{
 		display: flex;
 		flex-direction: column;
-		background-image: url('../../../static/邮箱2.png');
+		/* background-image: url('../../../static/邮箱2.png'); */
 		background-position: 80% 80%;
 		
 		background-repeat: no-repeat;
 		
 		 background-size: 100% 100%;
 	}
-	.advertisement{
-		height: 100%;
-		width: 100%;
-	}
-	.text1{
-		color: rgba(200,0,0,1);
-		font-size: 30px;
-	}
-	.log2{
-		height:100px ;
-		weight:25px;
-		/* background-image: url('../../../static/logo.png'); */
-	}
-	.text2{
-		color:yellowgreen;
-		font-size: 25px;
-	}
-	.text3{
-		color:pink;
-		font-size: 50px;
-	}
-	.text4{
-		color:gold;
-		font-size: 40px;
-	}
+.table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  
+  
+}
+.row {
+  display: flex;
+}
+.cell {
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 10px;
+  position: relative;
+  width: 100px;
+  height: 40px;
+}
+.vip-tag {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  padding: 2px;
+  background-color: #ffd700; /* 黄金色 */
+  color: white;
+  font-size: 12px;
+  border: 1px solid #000;
+  border-bottom: none;
+  border-right: none;
+}
+.container {
+  display: flex; /* 使用flex布局 */
+  flex-direction: row; /* 主轴为水平方向 */
+  flex-wrap: wrap; /* 当行不足以放下所有项时换行 */
+  justify-content: space-around; /* 项目在主轴上的对齐方式为平分空间 */
+  align-items: center; /* 项目在交叉轴上的对齐方式为居中 */
+}
+
+.menu-item {
+  display: flex; /* 使用flex布局 */
+  flex-direction: column; /* 主轴为垂直方向 */
+  align-items: center; /* 项目在交叉轴上的对齐方式为居中 */
+  padding: 10px; /* 内边距 */
+}
+
+.icon {
+  width: 50px; /* 图标宽度 */
+  height: 50px; /* 图标高度 */
+  margin-bottom: 5px; /* 图标与文本之间的间距 */
+}
+.notification-bar {
+  background-color: #f5f5f5; /* 通知栏背景色 */
+  border-bottom: 1px solid #dcdcdc; /* 底部边框线 */
+  padding: 10px; /* 内边距 */
+}
+
+.notification-text {
+  color: #333; /* 文本颜色 */
+  font-size: 14px; /* 字体大小 */
+}
 </style>
