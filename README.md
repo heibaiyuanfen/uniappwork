@@ -243,3 +243,160 @@ export default {
 请注意，您可能需要根据您的项目结构调整`ExperienceBar`组件的导入路径。在页面的`<script>`部分，注册`ExperienceBar`组件，并在`data`函数中定义经验条的数据。
 
 使用这种方法，您可以在您的uni-app项目中任何需要显示经验条的地方重用这个组件。
+
+# Uni-app 上传头像组件
+
+
+当你想要在点击头像后触发图片上传，而不使用<input>元素，可以使用UniApp的uni.chooseImage方法来实现图片选择和上传功能。以下是一个更新后的头像UI组件示例：
+
+```vue
+<template>
+  <div class="avatar" @click="openImagePicker">
+    <img :src="imageUrl" class="avatar-image" />
+    <uni-icons type="camera" size="32" class="camera-icon" />
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      imageUrl: '默认头像路径', // 替换为你的默认头像路径
+    };
+  },
+  methods: {
+    openImagePicker() {
+      uni.chooseImage({
+        count: 1, // 最多选择一张图片
+        success: (res) => {
+          const tempFilePath = res.tempFilePaths[0];
+          // 执行上传文件的逻辑
+          // 可以使用uni.uploadFile或其他上传方法将文件上传到服务器
+          // 上传成功后更新this.imageUrl为新头像的URL
+          // 例如：this.imageUrl = '新头像的URL';
+        },
+      });
+    },
+  },
+};
+</script>
+
+<style>
+.avatar {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
+</style>
+
+```
+
+在这个示例中，我们移除了<input>元素，而是在头像的点击事件上绑定了openImagePicker方法。当用户点击头像时，会触发openImagePicker方法，其中我们使用uni.chooseImage方法来选择图片。选择成功后，可以执行上传图片的逻辑，上传成功后更新this.imageUrl为新头像的URL。
+
+
+# uni-app scroll list 组件实现
+
+```vue
+<template>
+  <scroll-view class="page" scroll-y="true">
+    <!-- 头部显示未完成任务的数量 -->
+    <view class="header">
+      <text class="title">今天的任务（未完成 {{ uncompletedTasks.length }}）</text>
+      <text class="icon">···</text>
+    </view>
+    
+    <!-- 未完成任务列表 -->
+    <view class="list-container">
+      <view v-for="(item, index) in uncompletedTasks" :key="`uncompleted-${index}`" class="list-item">
+        <checkbox class="checkbox" :value="item.completed" @change="onCheckboxChange(item)"></checkbox>
+        <view class="item-content">
+          <text class="item-title">{{ item.title }}</text>
+          <text class="item-subtitle">{{ item.subtitle }}</text>
+          <!-- 显示任务创建的时间，格式化为本地时间字符串 -->
+          <text class="item-time">创建时间: {{ new Date(item.createdTime).toLocaleString() }}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 提交按钮和已完成任务的容器不变 -->
+    ...
+  </scroll-view>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      tasks: [
+        // 示例任务数据，包含创建时间
+        { title: '今天能量早餐', subtitle: '今天加油', completed: false, createdTime: Date.now() },
+        // 可以继续添加任务...
+      ]
+    };
+  },
+  computed: {
+    uncompletedTasks() {
+      return this.tasks.filter(task => !task.completed);
+    },
+    completedTasks() {
+      return this.tasks.filter(task => task.completed);
+    }
+  },
+  methods: {
+    onCheckboxChange(task) {
+      task.completed = !task.completed;
+    },
+    addTask(title, subtitle) {
+      // 添加一个新任务的方法，设定创建时间为当前时间
+      this.tasks.push({
+        title: title,
+        subtitle: subtitle,
+        completed: false,
+        createdTime: Date.now() // 设置创建时间为当前时间戳
+      });
+    }
+  }
+};
+</script>
+
+<style>
+/* 页面和元素的样式与之前相同 */
+.list-item {
+  display: flex;
+  align-items: center;
+  /* 其他样式不变 */
+}
+
+.item-content {
+  /* 内容区域的样式 */
+}
+
+.item-time {
+  color: #888;
+  font-size: 12px;
+  margin-top: 5px;
+}
+/* 其他样式不变 */
+</style>
+
+```
+
+

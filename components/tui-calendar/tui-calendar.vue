@@ -209,12 +209,12 @@
 			//选中|起始结束日期背景色
 			activeBgColor: {
 				type: String,
-				default: ''
+				default: '#fa5d1f'
 			},
 			//选中|起始结束日期字体颜色
 			activeColor: {
 				type: String,
-				default: '#fff'
+				default: '#ef8418'
 			},
 			//范围内日期背景色
 			rangeBgColor: {
@@ -224,7 +224,7 @@
 			//范围内日期字体颜色
 			rangeColor: {
 				type: String,
-				default: ''
+				default: 'rgba(86,119,252,0.1)'
 			},
 			//type=2时生效，起始日期自定义文案
 			startText: {

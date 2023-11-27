@@ -75,5 +75,15 @@
         }
       }
     }
+  },
+  "dependencies": {
+    "@sadais/piui-tool": "^0.0.32",
+    "nutui-uniapp": "^1.5.4",
+    "sadais-piui": "^1.2.7-beta85"
+  },
+  "devDependencies": {
+    "postcss-import": "^15.1.0",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2"
   }
 }
