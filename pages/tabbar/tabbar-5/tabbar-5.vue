@@ -33,14 +33,26 @@
 		      <text class="iconfont icon-settings"></text>
 		    </view>
 		  </view>
-		
-		
-		
-		<!-- 头像 -->
-  <div class="avatar" @click="openImagePicker">
+	
+		  <!-- 组件外层容器 -->
+		  <view class="status-container">
+		    <!-- 圆形标识 -->
+  <view class="avatar" @click="openImagePicker">
     <img :src="imageUrl" class="avatar-image" />
     <uni-icons type="camera" size="32" class="camera-icon" />
-  </div>
+  </view>
+    <!-- 标题和副标题容器 -->
+    <view class="status-info" style="position: relative;
+	left: 20px;">
+      <!-- 标题 -->
+      <text class="status-title">用户名称</text>
+      <!-- 副标题 -->
+      <text class="status-subtitle">资料完善度80%</text>
+    </view>
+		  </view>
+		
+		<!-- 头像 -->
+
 		
 	<!-- 信息统计容器 -->
 	  <view class="stats-container">
@@ -67,6 +79,7 @@
 	height: 90px;
 	width: 100%;
 	top: 130px;
+	left: 20px;
 	">
 		<view class="mytext"
 		style="position: absolute;
@@ -85,7 +98,9 @@
 		left: 70%;
 		"
 		>
-			
+			<text style="position: relative;
+			left: 25%;
+			top: 3px;">我的会员</text>
 		</view>
 		<view class="current-experience-icon" :style="{ left: fillWidth + '%' }">🌟</view>
 		
@@ -139,18 +154,29 @@
 	
 <div class="horizontal-scroll-list" @touchmove="handletouchmovent" 
 style="position: relative;
-top: 100px;"
+top: 70px;
+height: 170px;"
 >
     <div class="list-container" ref="listContainer">
       <!-- 使用 v-for 渲染左右滑动列表项 -->
       <div
         class="list-item"
+		style=" 
+  flex-direction: column; /* 垂直排列图标和文字 */
+  align-items: center; /* 水平居中对齐 */
+  padding: 50px; /* 间距 */
+  position: relative;
+ 
+  "
         v-for="item in itemList"
         :key="item.id"
         :class="{ selected: item.id === selectedItemId }"
         @click="selectItem(item)"
       >
-        <image :src="item.text" ></image>
+        <image :src="item.text" style="height: 30px;
+		width: 30px;
+		margin-bottom: 5px; /* 图标和文字的间距 */"></image>
+		<text>text</text>
       </div>
     </div>
   </div>
@@ -327,6 +353,19 @@ export default {
 </script>
 
 <style>
+	.uni-page-body{
+		display: flex;
+		flex-direction: column;
+		/* background-image: url('../../../static/邮箱.png');
+		background-position: 50% 100%;
+		
+		background-repeat: no-repeat; */
+		
+		/* background-size: 100% 100%; */
+		/* background:linear-gradient(to bottom,#FFff00,#ffffff); */
+		background-color: #FFFFFF;
+	}
+	
 .content {
 	text-align: center;
 	height: 400upx;
@@ -401,8 +440,8 @@ export default {
 /* 添加左右滑动列表的样式 */
 .horizontal-scroll-list {
   /* 设置组件的宽度和高度以适应你的需求 */
-  width: 100%;
-  height: 200px; /* 例如，设置高度为200px */
+ width: 100%;
+
 
   /* 设置溢出以启用水平滚动 */
   overflow-x: auto;
@@ -430,6 +469,7 @@ export default {
   height: 100px;
   border-radius: 50%;
   border: 1px solid black;
+  
   
 }
 
@@ -475,7 +515,7 @@ export default {
   display: flex;
   justify-content: space-around; /* 项目间隔均匀分布 */
   padding: 10px;
-  background-color: #FFF7E6; /* 背景颜色 */
+  background-color: #ffffff; /* 背景颜色 */
 }
 
 .stat-item {
@@ -503,7 +543,7 @@ export default {
 .feature-list {
   display: flex;
   justify-content: space-around; /* 使功能项均匀分布 */
-  background-color: #FFF7E6; /* 容器背景颜色 */
+  background-color: #ffffff; /* 容器背景颜色 */
 }
 
 .feature-item {
@@ -511,11 +551,13 @@ export default {
   flex-direction: column; /* 垂直排列图标和文字 */
   align-items: center; /* 水平居中对齐 */
   padding: 10px; /* 间距 */
+  position: relative;
+  top: 10px;
 }
 
 .feature-icon {
-  width: 48px; /* 图标宽度 */
-  height: 48px; /* 图标高度 */
+  width: 30px; /* 图标宽度 */
+  height: 30px; /* 图标高度 */
   margin-bottom: 5px; /* 图标和文字的间距 */
 }
 
@@ -591,5 +633,46 @@ export default {
 .iconfont {
   font-family: 'iconfont'; /* 指定字体图标的字体族名 */
   font-size: 16px;
+}
+/* 组件外层容器样式 */
+.status-container {
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 子项垂直居中对齐 */
+}
+
+/* 圆形标识样式 */
+.status-circle {
+  width: 40px; /* 圆形直径 */
+  height: 40px; /* 圆形直径 */
+  border-radius: 50%; /* 设置为50%，使之成为圆形 */
+  border: 1px solid #000; /* 边框颜色 */
+  display: flex; /* 使用flex布局使内部文本居中 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  margin-right: 10px; /* 与标题的间距 */
+}
+
+/* 圆形内的文本样式 */
+.status-text {
+  font-size: 12px; /* 字体大小 */
+  font-weight: bold; /* 加粗 */
+}
+
+/* 标题样式 */
+.status-title {
+  font-size: 16px; /* 字体大小 */
+  font-weight: bold; /* 加粗 */
+  margin-bottom: 4px; /* 与副标题的间距 */
+}
+
+/* 副标题样式 */
+.status-subtitle {
+  font-size: 12px; /* 字体大小 */
+}
+
+/* 标题和副标题容器样式 */
+.status-info {
+  display: flex; /* 使用flex布局 */
+  flex-direction: column; /* 子项竖直排列 */
 }
 </style>

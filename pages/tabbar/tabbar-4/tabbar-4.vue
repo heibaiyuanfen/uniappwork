@@ -12,7 +12,7 @@
 		<!-- 导航栏 -->
 		  <view class="navbar">
 		    <!-- 导航栏容器 -->
-		    <view class="navbar-indicator"></view> <!-- 指示器 -->
+		    
 		    <view class="navbar-item" v-for="(item, index) in navbarItems" :key="index" @click="selectItem(index)">
 		      <!-- 循环导航项并设置点击事件 -->
 		      <text :class="{'navbar-text': true, 'active': currentIndex === index}">{{ item }}</text>
@@ -51,7 +51,7 @@
 				<!-- <TnCalendar v-model="selectDate" mode="date" /> -->
 				<scroll-view class="scroll-page" scroll-y="true" style="position: absolute; width: 40%; top: 250px;left: 60%;">
 					<view class="page">
-					<view class="head">
+					<view class="head" style="height: 50px;">
 					  <!-- 头部标题和未完成任务数量 -->
 					  <text class="title">今天你有{{ uncompletedTasks.length }}个待办</text>
 					  <!-- 更多操作图标，使用字体图标或图片 -->
@@ -341,7 +341,7 @@ export default {
   
   position: relative;
   top: 10px;
-  height: 40px;
+  height: 200px;
   width: 90%;
   left: 10px;
   ;
@@ -366,7 +366,7 @@ export default {
 }
 
 .title {
-  font-size: 18px; /* 标题大小 */
+  font-size: 12px; /* 标题大小 */
   color: #000; /* 标题颜色 */
   font-weight: bold; /* 字体加粗 */
 }

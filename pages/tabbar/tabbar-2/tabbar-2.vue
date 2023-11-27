@@ -114,12 +114,14 @@ export default {
 	.uni-page-body{
 		display: flex;
 		flex-direction: column;
-		/* background-image: url('../../../static/邮箱2.png'); */
-		background-position: 80% 80%;
+		/* background-image: url('../../../static/邮箱.png');
+		background-position: 50% 100%;
 		
-		background-repeat: no-repeat;
+		background-repeat: no-repeat; */
 		
-		 background-size: 100% 100%;
+		/* background-size: 100% 100%; */
+		/* background:linear-gradient(to bottom,#FFff00,#ffffff); */
+		background-color: #FFFFFF;
 	}
 	
 	
