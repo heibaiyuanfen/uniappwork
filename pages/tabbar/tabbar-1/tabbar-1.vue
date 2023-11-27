@@ -164,6 +164,8 @@ export default {
 	    flex-direction: row;
 	    flex-wrap: nowrap;
 	    background-color: #FFFFFF;
+		position: relative;
+		left: 25px;
 	}
 	.mini-btn {
 	    margin-right: 30rpx;
