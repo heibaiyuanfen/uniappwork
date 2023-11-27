@@ -41,7 +41,7 @@
   <view class="feature-container">
     <!-- 组件顶部区域，包含VIP标识和标题 -->
     <view class="feature-header">
-       <text class="vip-tag">VIP</text>
+       <text class="vip-tag" style="position: relative;">VIP</text>
       <image class="header-icon" src="../../../static/after.jpg"></image>
       <text class="header-title">辛巴小助手</text>
     </view>
@@ -255,7 +255,7 @@ export default {
   height: 20px; /* 图标高度 */
   margin-right: 5px; /* 与标题的间距 */
   position: relative;
-  left: 35%;
+  left: 30%;
 }
 
 /* 头部标题样式 */

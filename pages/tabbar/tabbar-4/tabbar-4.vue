@@ -214,6 +214,8 @@ export default {
 	    flex-direction: row;
 	    flex-wrap: nowrap;
 	    background-color: #FFFFFF;
+		position: relative;
+		left: 25px;
 	}
 	
 	.content {
@@ -337,8 +339,8 @@ export default {
 
 .container {
   
-  position: absolute;
-  top: 90px;
+  position: relative;
+  top: 10px;
   height: 40px;
   width: 90%;
   left: 10px;
