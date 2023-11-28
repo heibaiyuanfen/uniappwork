@@ -18,36 +18,15 @@
 					      <image :src="item" class="slide-image"></image>
 					    </swiper-item> -->
 						<swiper-item>
+							<image src="../../../static/856f5566381b1dc750550025a13ae26.png" style="width: 100%;
+							
+							height: 150px;"></image>
+						</swiper-item>
+						<swiper-item>
 							<div style="background-color: red; width: 100%;height: 100%;align-items: center;display: flex; justify-content: center;">
 								<span style="color: yellow;text-align: center;">
 									国务院关于印发“十四五”就业促进规划的通知
 								</span>
-							</div>
-						</swiper-item>
-						<swiper-item>
-<!-- 							<canvas style="background-color:linear-gradient(to bottom,#FFff00,#ffffff) ;">
-								
-							</canvas> -->
-							<div style="background: linear-gradient(to bottom, yellow, white);
-							width: 100%;
-							height:100%;
-							align-items: center;
-							display: block; 
-							justify-content: center;
-							text-align: center;">
-								<text style="display: block;
-								position: relative;
-								top: 40px;
-								right: 30px;">
-									狮王养成记
-								</text>
-								<text style="display: block;
-								position: relative;
-								top: 50px;
-								left: 80px;">
-									——职场新人提升转型平台
-								</text>
-								
 							</div>
 						</swiper-item>
 					  </swiper>
@@ -64,8 +43,11 @@
 		</view>
 		<view class="module2">
 			<!-- <view class="flex-item4"><text class="text3"></text></view> -->
-			<view class="flex-item5" style="background-image: url('../../../static/logo5.png');background-size: 100% 100%;background-position: left;background-repeat: no-repeat;"></view>
-			<view class="flex-item5" style="background-image: url('../../../static/img/tabbar/热榜.png');background-size: 110% 100%;background-position: center;background-repeat: no-repeat;">
+			<view class="flex-item5" style="background-image: url('../../../static/logo5.png');background-size: 100% 100%;background-position: left;background-repeat: no-repeat;
+			position: relative;
+			left: -10px;"></view>
+			<view class="flex-item5" style="background-image: url('../../../static/img/tabbar/热榜.png');background-size: 110% 100%;background-position: center;background-repeat: no-repeat;
+			width: 250px;">
 				<view class="flex-item6"> 热榜</view>
 				<view class="flex-item3" style="background-image: url('../../../static/img/热度1.png');background-size: 100% 100%;background-position: center;background-repeat: no-repeat;"></view>
 				<view class="flex-item4"><text class="hot">111111111111</text></view>
@@ -91,6 +73,8 @@ export default {
 				"../../../static/logo2.png",
 				"../../../static/logo1.png",
 			],
+			      // 选项数据
+			      options: ['上手', '进阶', '精通'],
 			cuindex:0,
 			intervalId: null,
 		};
@@ -104,7 +88,22 @@ export default {
 			    },	
 			    nextImage() {
 	      this.cuindex = (this.cuindex + 1) % this.items.length;
-			    }
+			    },
+				    drawArtText() {
+				      // 获取Canvas元素的上下文
+				      const canvas = this.$refs.canvas
+				      const ctx = canvas.getContext('2d')
+				      
+				      // 设置艺术字的样式，如字体、大小、颜色等
+				      ctx.font = '40px Arial'
+				      ctx.fillStyle = 'red'
+				      
+				      // 清空Canvas
+				      ctx.clearRect(0, 0, canvas.width, canvas.height)
+				      
+				      // 绘制艺术字
+				      ctx.fillText('你好', 50, 50) // 这里的坐标和文本内容可以根据需求进行调整
+				    }
 		},
 	mounted() {
 	    this.startSlideshow();
@@ -260,4 +259,10 @@ export default {
 		color:red;
 		text-decoration: underline;
 	}
+	
+	
+	
+
+	
+
 </style>

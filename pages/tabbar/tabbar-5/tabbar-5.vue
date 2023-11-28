@@ -35,9 +35,10 @@
 		  </view>
 	
 		  <!-- 组件外层容器 -->
-		  <view class="status-container">
+		  <view class="status-container" style="background: linear-gradient(to bottom, #ffff72, #fff475);">
 		    <!-- 圆形标识 -->
-  <view class="avatar" @click="openImagePicker">
+  <view class="avatar" @click="openImagePicker" style="position: relative;
+  left: 12px;">
     <img :src="imageUrl" class="avatar-image" />
     <uni-icons type="camera" size="32" class="camera-icon" />
   </view>
@@ -51,7 +52,7 @@
     </view>
 		  </view>
 		
-		<!-- 头像 -->
+		
 
 		
 	<!-- 信息统计容器 -->

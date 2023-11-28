@@ -164,8 +164,9 @@ export default {
    position: relative;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #000;
-  border-left: 1px solid #000;
+  border-radius: 10px;
+  border-top: 1px solid #dcdcdc;
+  border-left: 1px solid #dcdcdc;
   
   
   
@@ -174,8 +175,8 @@ export default {
   display: flex;
 }
 .cell {
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000;
+  border-right: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
   padding: 10px;
   position: relative;
   width: 100px;
@@ -185,8 +186,8 @@ export default {
 }
 .vip-tag {
   position: absolute;
-  top: -1px;
-  left: -1px;
+  top: 2px;
+  left: 2px;
   padding: 2px;
   background-color: #ffd700; /* 黄金色 */
   color: white;
