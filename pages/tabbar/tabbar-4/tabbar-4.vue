@@ -32,8 +32,8 @@
 		      <image class="icon2" :src="item2.icon"></image>
 		      <!-- 标题和描述 -->
 		      <view class="content2">
-		        <text class="title">{{ item2.title }}</text>
-		        <text class="description">{{ item2.description }}</text>
+		        <text class="title" style="position:relative;">{{ item2.title }}</text>
+		        <text class="description" style="position: relative; left: 5px;">{{ item2.description }}</text>
 		      </view>
 
 		      <!-- 这里的图标可以根据您的资源替换 -->
