@@ -62,11 +62,13 @@
 		        <!-- 当点击复选框时，触发toggleTaskCompletion方法 -->
 		        <!-- <checkbox class="checkbox" :value="item.completed" @change="toggleTaskCompletion(item)"></checkbox> -->
 		        <text class="item-title">{{ item.title }}</text>
-		        <text class="item-subtitle">{{ item.subtitle }}</text>
+		        <text class="item-subtitle" >{{ item.subtitle }}</text>
 				<!-- 显示任务创建的时间 -->
 				<!-- <text class="item-time">创建时间: {{ new Date(item.createdTime).toLocaleString() }}</text>
 				 -->
-				 <text class="item-time">创建时间: {{ formatTime(item.createdTime) }}</text>
+				 <view>
+					 <text class="item-time" style="position: relative;">创建时间: {{ formatTime(item.createdTime) }}</text>
+				 </view>
 		      </view>
 		    </view>
 		    <!-- 已完成任务列表 -->
@@ -75,7 +77,9 @@
 			<text class="title">今天的任务（完成 {{ completedTasks.length }}）</text>
 		      <view v-for="(item, index) in completedTasks" :key="`completed-${index}`" class="completed-task">
 		        <text class="completed-item-title">{{ item.title }}</text>
-				<text class="item-time">创建时间: {{ formatTime(item.createdTime) }}</text>
+				<view>
+					<text class="item-time">创建时间: {{ formatTime(item.createdTime) }}</text>
+				</view>
 		      </view>
 		    </view>
 			   <!-- 提交按钮 -->
