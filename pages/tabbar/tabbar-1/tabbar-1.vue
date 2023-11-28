@@ -31,16 +31,19 @@
 						</swiper-item>
 					  </swiper>
 				</view>
-		<view class="module">
-			<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">私人定制</text></view>
-			<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">实用功能</text></view>
-			<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">小班课堂</text></view>
-		</view>
-		<view class="module">
-			<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">企业合作</text></view>
-			<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">线下拓展</text></view>
-			<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">导师推荐</text></view>
-		</view>
+				<view style="border: 1px solid #dcdcdc;
+				border-radius: 10px;">
+					<view class="module">
+						<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">私人定制</text></view>
+						<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">实用功能</text></view>
+						<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">小班课堂</text></view>
+					</view>
+					<view class="module">
+						<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">企业合作</text></view>
+						<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">线下拓展</text></view>
+						<view class="flex-item2" style="background-image: url('../../../static/边框1.png');background-size: 120% 100%;background-position: center;background-repeat: no-repeat;"><image class="search-icon" src="../../../static/img/icon2.png"></image><text class="text2">导师推荐</text></view>
+					</view>
+				</view>
 		<view class="module2">
 			<!-- <view class="flex-item4"><text class="text3"></text></view> -->
 			<view class="flex-item5" style="background-image: url('../../../static/logo5.png');background-size: 100% 100%;background-position: left;background-repeat: no-repeat;
@@ -48,12 +51,13 @@
 			left: -10px;"></view>
 			<view class="flex-item5" style="background-image: url('../../../static/img/tabbar/热榜.png');background-size: 110% 100%;background-position: center;background-repeat: no-repeat;
 			width: 250px;">
-				<view class="flex-item6"> 热榜</view>
-				<view class="flex-item3" style="background-image: url('../../../static/img/热度1.png');background-size: 100% 100%;background-position: center;background-repeat: no-repeat;"></view>
+				<view class="flex-item6"
+				style="font-size: 20px;"> 热榜</view>
+				<image src="../../../static/img/热度1.png" style="height: 35px;width: 35px;"></image>
 				<view class="flex-item4"><text class="hot">111111111111</text></view>
-				<view class="flex-item3" style="background-image: url('../../../static/img/热度2.png');background-size: 100% 100%;background-position: center;background-repeat: no-repeat;"></view>
+				<image src="../../../static/img/热度2.png" style="height: 35px;width: 35px;"></image>
 				<view class="flex-item4"><text class="hot">222222222222</text></view>
-				<view class="flex-item3" style="background-image: url('../../../static/img/热度3.png');background-size: 100% 100%;background-position: center;background-repeat: no-repeat;"></view>
+				<image src="../../../static/img/热度3.png" style="height: 35px;width: 35px;"></image>
 				<view class="flex-item4"><text  class="hot">333333333333</text></view>
 				<view class="flex-item3"></view>
 				<view class="flex-item4"></view>
@@ -153,7 +157,8 @@ export default {
 	    background-color: #FFFFFF;
 	}
 	.uni-input-wrapper {
-		width: 325px;
+		height: 42px;
+		width: 350px;
 		border-radius: 50px;
 		border:1px solid blue;
 	    /* #ifndef APP-NVUE */
@@ -164,7 +169,8 @@ export default {
 	    flex-wrap: nowrap;
 	    background-color: #FFFFFF;
 		position: relative;
-		left: 25px;
+		left: 17px;
+		
 	}
 	.mini-btn {
 	    margin-right: 30rpx;
@@ -183,6 +189,7 @@ export default {
 		line-height: 80px;
 	/* 	background-image: url('../../../static/img/tabbar/边框.png');
 		background-size: 100% 100%; */
+		margin: 5px;
 	}
 	.flex-item3 {
 		width: 20%;

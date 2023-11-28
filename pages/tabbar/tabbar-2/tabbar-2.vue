@@ -33,7 +33,8 @@
 		      <view class="cell" v-for="(cell, index) in item" :key="index">
 		        <text class="vip-tag">VIP</text>
 		        <text style="position: relative;
-				left: 40px;">{{ cell }}</text>
+				left: 45px;
+				top: 5px;">{{ cell }}</text>
 		      </view>
 		    </view>
 		  </view>
@@ -144,7 +145,8 @@ export default {
 	    background-color: #FFFFFF;
 	}
 	.uni-input-wrapper {
-		width: 325px;
+		height: 42px;
+		width: 350px;
 		border-radius: 50px;
 		border:1px solid blue;
 	    /* #ifndef APP-NVUE */
@@ -155,7 +157,7 @@ export default {
 	    flex-wrap: nowrap;
 	    background-color: #FFFFFF;
 		position: relative;
-		left: 25px;
+		left: 17px;
 		
 	}
 	
@@ -167,8 +169,8 @@ export default {
   border-radius: 10px;
   border-top: 1px solid #dcdcdc;
   border-left: 1px solid #dcdcdc;
-  
-  
+  width: 95%;
+  left: 10px;
   
 }
 .row {

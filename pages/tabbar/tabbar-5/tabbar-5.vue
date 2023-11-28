@@ -74,8 +74,8 @@
   <view class="experience-bar-container">
 	<view class="mybox" 
 	style="border-radius: 5px; 
-	border: 1px solid black;
-	background-color: beige; 
+	border: 1px solid #dcdcdc;
+	background-color: #fafafa; 
 	position: relative;
 	height: 90px;
 	width: 100%;
@@ -126,9 +126,13 @@
 	</view>
 	
 	  <view class="feature-list" style="position: relative;
-	  top: 100px;">
+	  top: 100px;
+	  border: 1px solid #dcdcdc;
+	  width: 90%;
+	  left: 20px;
+	  border-radius: 10px;">
 	  <text style="position: absolute;
-	  left: 0px;">社区服务</text>
+	  left: 22px;">社区服务</text>
 	  
 	    <!-- 功能列表容器 -->
 	    <view class="feature-item" v-for="(feature, index) in features" :key="index">

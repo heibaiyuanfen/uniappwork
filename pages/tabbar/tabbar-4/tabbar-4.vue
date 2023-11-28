@@ -88,6 +88,8 @@
 			    </view> -->
 						</view>
 				</scroll-view>
+				
+		
 	</view>
 </template>
 
@@ -208,7 +210,8 @@ export default {
 	    background-color: #FFFFFF;
 	}
 	.uni-input-wrapper {
-		width: 325px;
+		height: 42px;
+		width: 350px;
 		border-radius: 50px;
 		border:1px solid blue;
 	    /* #ifndef APP-NVUE */
@@ -219,7 +222,8 @@ export default {
 	    flex-wrap: nowrap;
 	    background-color: #FFFFFF;
 		position: relative;
-		left: 25px;
+		left: 17px;
+		
 	}
 	
 	.content {
