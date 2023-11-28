@@ -32,7 +32,8 @@
 		    <view class="row" v-for="(item, index) in tableData" :key="index">
 		      <view class="cell" v-for="(cell, index) in item" :key="index">
 		        <text class="vip-tag">VIP</text>
-		        <text>{{ cell }}</text>
+		        <text style="position: relative;
+				left: 40px;">{{ cell }}</text>
 		      </view>
 		    </view>
 		  </view>
@@ -155,15 +156,17 @@ export default {
 	    background-color: #FFFFFF;
 		position: relative;
 		left: 25px;
+		
 	}
 	
 	
 .table {
-	position: relative;
+   position: relative;
   display: flex;
   flex-direction: column;
   border-top: 1px solid #000;
   border-left: 1px solid #000;
+  
   
   
 }
@@ -176,8 +179,9 @@ export default {
   padding: 10px;
   position: relative;
   width: 100px;
-  height: 40px;
+  height: 55px;
   width: 50%;  
+  
 }
 .vip-tag {
   position: absolute;
@@ -209,6 +213,7 @@ export default {
   border-radius: 5px; /* 圆角效果 */
   padding: 10px; /* 内边距设置 */
   margin: 10px; /* 外边距设置 */
+  height: 150px;
 }
 
 /* 模块标题区域样式 */

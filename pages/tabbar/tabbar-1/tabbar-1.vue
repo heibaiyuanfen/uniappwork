@@ -14,9 +14,9 @@
 					    autoplay="true" 
 					    interval="3000" 
 					    duration="500">
-					    <swiper-item v-for="(item, index) in items" :key="index">
+<!-- 					    <swiper-item v-for="(item, index) in items" :key="index">
 					      <image :src="item" class="slide-image"></image>
-					    </swiper-item>
+					    </swiper-item> -->
 						<swiper-item>
 							<div style="background-color: red; width: 100%;height: 100%;align-items: center;display: flex; justify-content: center;">
 								<span style="color: yellow;text-align: center;">
